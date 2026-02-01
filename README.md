@@ -1,4 +1,5 @@
-<img width="605" height="668" alt="Screenshot 2026-02-01 133317" src="https://github.com/user-attachments/assets/9efad6eb-91cf-4e4d-998e-d2c3e4ff433a" />
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/9efad6eb-91cf-4e4d-998e-d2c3e4ff433a" width="100%" alt="KATANA Dashboard Preview" />
 
   # ⚔️ KATANA - The Ultimate Klipper Installation Architect
 
@@ -34,18 +35,22 @@ Unlike other installers that just fetch files, **KATANA** focuses on **system se
 ### 1. 🟣 The Status Matrix
 A real-time dashboard that checks your installation live. See instantly if **Klipper**, **Moonraker**, or **Nginx** are running, missing, or require updates.
 
-### 2. 🤖 Auto-Pilot (God Mode)
+### 2. ⚡ Instant UI Switching (Mainsail <-> Fluidd)
+Can't decide between Mainsail and Fluidd? No problem.
+Use **Menu [3]** to switch your interface instantly. KATANA reconfigures Nginx automatically without breaking your Klipper config. Try both and stick with what you love.
+
+### 3. 🤖 Auto-Pilot (God Mode)
 One-click installation of the complete stack:
 * **Core:** Klipper, Moonraker, Nginx (Auto-configured).
 * **UI:** Mainsail or Fluidd.
 * **System:** Dependencies, Python Env, Crowsnest.
 
-### 3. 🛡️ Fortress Security (Hardening)
+### 4. 🛡️ Fortress Security (Hardening)
 KATANA treats your 3D printer like a server:
 * **UFW Firewall:** Automatically configured to block unauthorized ports, allowing only SSH, HTTP, and API access.
 * **Log2Ram:** Pre-configured to extend your SD card's lifespan by writing logs to RAM instead of disk (prevents corruption on power loss).
 
-### 4. 🧩 Extensions: KAMP & ShakeTune
+### 5. 🧩 Extensions: KAMP & ShakeTune
 * **KAMP (Smart Purging):** KATANA installs the repository and generates the necessary configuration files.
     * *⚠️ **Manual Action Required:** KATANA does not modify your `printer.cfg` automatically. You must manually add `[include KAMP_Settings.cfg]` and update your `PRINT_START` macro to use `LINE_PURGE` or `VORON_PURGE`.*
 * **ShakeTune:** Fully automated installation for Input Shaper resonance testing and graph generation.
@@ -58,9 +63,7 @@ Get your Klipper system running in 3 commands.
 
 ```bash
 cd ~
-git clone [https://github.com/DEIN_GITHUB_NAME/KATANA-Klipper-Installer.git](https://github.com/DEIN_GITHUB_NAME/KATANA-Klipper-Installer.git)
+git clone [https://github.com/Extrutex/KATANA-Klipper-Installer.git](https://github.com/Extrutex/KATANA-Klipper-Installer.git)
 cd KATANA-Klipper-Installer
 chmod +x katana.sh
 ./katana.sh
-
-
