@@ -1,53 +1,61 @@
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/9efad6eb-91cf-4e4d-998e-d2c3e4ff433a" width="100%" alt="KATANA Dashboard" />
+  <img src="https://github.com/user-attachments/assets/9efad6eb-91cf-4e4d-998e-d2c3e4ff433a" width="100%" alt="KATANA Interface" />
 
-  # ⚔️ KATANA - Klipper Installation & Management Utility
+  # ⚔️ KATANA - Klipper Deployment Utility
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](https://opensource.org/licenses/MIT)
-  [![Klipper](https://img.shields.io/badge/Klipper-Ready-green.svg)](https://www.klipper3d.org/)
-  [![Bash](https://img.shields.io/badge/Language-Bash-blue.svg)](https://www.gnu.org/software/bash/)
+  [![Platform](https://img.shields.io/badge/Platform-Debian%20%7C%20Raspbian%20%7C%20Armbian-blue.svg)]()
+  [![Bash](https://img.shields.io/badge/Language-Bash%20Script-green.svg)]()
 
-  > **High-performance Klipper automation for Debian-based systems.** <br>
-  > Streamlined deployment with integrated security hardening and diagnostic tools.
+  > **Opinionated automation for the modern 3D printing stack.** <br>
+  > Deploys a hardened, fully configured Klipper environment in minutes.
 </div>
 
 ---
 
-## 🚀 Overview
+## ⚡ Overview
 
-**KATANA** is a CLI utility designed to automate the deployment and management of the **Klipper 3D Printer** stack. While other tools focus purely on installation, KATANA prioritizes **system stability, security hardening, and a centralized workflow.**
+**KATANA** is a CLI utility engineered to streamline the deployment of the Klipper ecosystem. Unlike modular toolboxes that require extensive manual menu navigation, KATANA utilizes an **"Auto-Pilot" workflow** to provision the entire stack (Firmware, API, Reverse Proxy, UI) in a single execution pass.
 
-It is built for users who want a secure, reliable Klipper environment on any Debian-based host (Raspberry Pi, Orange Pi, or old x86 hardware).
+It is designed for users who treat their 3D printer as a production appliance, prioritizing **security, stability, and reproducible configuration** over manual tinkering.
 
-## 📦 Core Modules
+## 📦 Core Architecture
 
 ### 1. 🟣 Deployment Matrix
-A visual status dashboard that verifies the installation state of your core components. It provides instant feedback on whether **Klipper**, **Moonraker**, or **Nginx** are properly integrated into the system.
+A real-time dashboard that verifies the installation state of the stack components.
+* **Function:** Checks for the presence of Klipper, Moonraker, UI frontends, and system services.
+* **Purpose:** Provides immediate visual feedback on which parts of the ecosystem are deployed on the host.
 
-### 2. ⚡ Dynamic UI Management
-Seamlessly switch between **Mainsail** and **Fluidd**. KATANA automatically reconfigures the Nginx reverse proxy to point to your chosen interface without requiring manual config edits or risk of breaking existing services.
+### 2. ⚡ Dynamic Nginx Management
+KATANA handles the reverse proxy configuration automatically.
+* **Feature:** Switch between **Mainsail** and **Fluidd** instantly via the menu.
+* **Mechanism:** The script rewrites the Nginx site configuration (`/etc/nginx/sites-available/klipper`) to point to the selected frontend and restarts the service seamlessly. No manual config editing required.
 
-### 3. 🤖 Auto-Pilot Deployment
-An automated sequence for rapid stack setup:
-* **Services:** Klipper, Moonraker, Nginx.
-* **UI Options:** Choice between the leading web interfaces.
-* **Environment:** Automated Python virtual environment and dependency management.
+### 3. 🛡️ System Hardening (Standardized)
+Security is not an option; it is a default.
+* **UFW Firewall:** Automated rule generation denying all incoming traffic except essential ports (SSH:22, HTTP:80, API:7125).
+* **Log2Ram:** Integrates the Log2Ram daemon to redirect system logging to RAM, significantly reducing write cycles on SD cards and preventing corruption during power loss.
 
-### 4. 🛡️ System Hardening (Standardized)
-KATANA enforces server-grade security practices by default:
-* **UFW Integration:** Automated firewall rules limiting access to SSH, HTTP, and API ports.
-* **Log2Ram:** Integrated setup to minimize SD card wear-leveling issues by managing logs in RAM.
+### 4. 🧩 Integrated Extension Support
+First-class support for modern Klipper extensions.
+* **KAMP:** Clones the repo and injects the update manager entry into `moonraker.conf`. (Note: `[include KAMP_Settings.cfg]` must be added to `printer.cfg` manually).
+* **ShakeTune:** Automated installation of the Klippain ShakeTune module for advanced input shaper analysis.
 
-### 5. 🧩 Integrated Extensions
-* **KAMP:** Automated repository setup for adaptive meshing.
-    * *Note: Requires manual include in `printer.cfg`.*
-* **ShakeTune:** Direct installation of resonance analysis tools for Input Shaper optimization.
+### 5. 🤖 Auto-Pilot (God Mode)
+The "Auto-Pilot" function executes a linear provisioning script:
+1. **System Prep:** Updates `apt`, installs Python3 venv, builds dependencies.
+2. **Core Stack:** Clones Klipper/Moonraker, creates systemd services.
+3. **Network:** Configures Moonraker auth and CORS for local access.
+4. **UI:** Deploys selected frontend and configures Nginx.
 
-## ⚡ Installation
+## 🛠️ Usage
 
-KATANA is designed to be lightweight and fast.
+**Requirements:**
+* Hardware: Raspberry Pi (3/4/Zero2), Orange Pi, or generic Linux host.
+* OS: Debian Bookworm / Bullseye (Lite recommended).
+* User: Standard user with `sudo` privileges.
 
-**Requirements:** Any Debian-based OS (Bookworm/Bullseye recommended).
+**Installation:**
 
 ```bash
 cd ~
