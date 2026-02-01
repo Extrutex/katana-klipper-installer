@@ -1,5 +1,4 @@
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/c92a4b28-a275-405f-ad63-1f14d52ae56d" width="100%" alt="KATANA Dashboard Preview" />
+<img width="605" height="668" alt="Screenshot 2026-02-01 133317" src="https://github.com/user-attachments/assets/9efad6eb-91cf-4e4d-998e-d2c3e4ff433a" />
 
   # ⚔️ KATANA - The Ultimate Klipper Installation Architect
 
@@ -63,3 +62,4 @@ git clone [https://github.com/DEIN_GITHUB_NAME/KATANA-Klipper-Installer.git](htt
 cd KATANA-Klipper-Installer
 chmod +x katana.sh
 ./katana.sh
+
